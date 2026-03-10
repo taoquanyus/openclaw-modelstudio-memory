@@ -13,7 +13,7 @@
 
 ## 安装
 
-### 方式 A：从本地安装（开发推荐）
+### 方式 A：从本地安装
 ```bash
 git clone git@github.com:taoquanyus/openclaw-modelstudio-memory.git
 ```
@@ -26,7 +26,7 @@ openclaw plugins install -l ./openclaw-modelstudio-memory
 openclaw plugins install ./openclaw-modelstudio-memory
 ```
 
-### 方式 B：从 npm 安装（发布后）
+### 方式 B：从 npm 安装
 
 ```bash
 openclaw plugins install @modelstudio/openclaw-modelstudio-memory
