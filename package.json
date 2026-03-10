@@ -1,0 +1,45 @@
+{
+  "name": "@modelstudio/openclaw-modelstudio-memory",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "阿里云百炼长期记忆服务 OpenClaw 插件",
+  "license": "Apache-2.0",
+  "author": "ModelStudio Team",
+  "keywords": [
+    "openclaw",
+    "plugin",
+    "memory",
+    "bailian",
+    "dashscope",
+    "aliyun",
+    "long-term-memory"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/modelstudio/openclaw-modelstudio-memory"
+  },
+  "main": "index.ts",
+  "types": "index.ts",
+  "dependencies": {
+    "@sinclair/typebox": "^0.34.0"
+  },
+  "peerDependencies": {
+    "openclaw": ">=2026.3.1"
+  },
+  "peerDependenciesMeta": {
+    "openclaw": {
+      "optional": true
+    }
+  },
+  "openclaw": {
+    "extensions": ["./index.ts"]
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "index.ts",
+    "openclaw.plugin.json",
+    "README.md"
+  ]
+}

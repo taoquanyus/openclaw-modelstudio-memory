@@ -1,0 +1,98 @@
+{
+  "id": "openclaw-modelstudio-memory",
+  "name": "openclaw-modelstudio-memory",
+  "description": "阿里云百炼长期记忆服务，提供自动记忆捕获和召回能力",
+  "kind": "memory",
+  "version": "1.0.0",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "apiKey": {
+        "type": "string",
+        "description": "DashScope API Key（支持环境变量 ${DASHSCOPE_API_KEY}）"
+      },
+      "userId": {
+        "type": "string",
+        "description": "用户 ID，用于隔离不同用户的记忆"
+      },
+      "baseUrl": {
+        "type": "string",
+        "default": "https://dashscope.aliyuncs.com/api/v2/apps/memory",
+        "description": "API endpoint（公有云或私有部署的完整 URL）"
+      },
+      "autoCapture": {
+        "type": "boolean",
+        "default": true,
+        "description": "是否自动捕获对话到记忆"
+      },
+      "autoRecall": {
+        "type": "boolean",
+        "default": true,
+        "description": "是否自动召回相关记忆"
+      },
+      "topK": {
+        "type": "number",
+        "default": 5,
+        "description": "搜索/召回的记忆数量"
+      },
+      "minScore": {
+        "type": "number",
+        "default": 0,
+        "description": "最小相似度阈值（0-100）"
+      },
+      "captureMaxMessages": {
+        "type": "number",
+        "default": 10,
+        "description": "自动捕获时的最大消息数量"
+      },
+      "recallMinPromptLength": {
+        "type": "number",
+        "default": 10,
+        "description": "触发自动召回的最小 prompt 长度"
+      },
+      "recallCacheTtlMs": {
+        "type": "number",
+        "default": 300000,
+        "description": "召回结果缓存时间（毫秒），0 表示禁用缓存"
+      }
+    }
+  },
+  "uiHints": {
+    "apiKey": {
+      "label": "API Key",
+      "sensitive": true,
+      "placeholder": "${DASHSCOPE_API_KEY}"
+    },
+    "userId": {
+      "label": "用户 ID",
+      "placeholder": "user_001"
+    },
+    "baseUrl": {
+      "label": "API Endpoint",
+      "placeholder": "https://dashscope.aliyuncs.com/api/v2/apps/memory",
+      "help": "默认使用阿里云百炼公有云，私有部署时填写完整 URL"
+    },
+    "autoCapture": {
+      "label": "自动捕获"
+    },
+    "autoRecall": {
+      "label": "自动召回"
+    },
+    "topK": {
+      "label": "召回数量"
+    },
+    "minScore": {
+      "label": "最小相似度"
+    },
+    "captureMaxMessages": {
+      "label": "最大捕获消息数"
+    },
+    "recallMinPromptLength": {
+      "label": "最小召回触发长度"
+    },
+    "recallCacheTtlMs": {
+      "label": "缓存时间（毫秒）"
+    }
+  }
+}
