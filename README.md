@@ -196,15 +196,6 @@ openclaw modelstudio-memory stats
 注入到 prompt 上下文
 ```
 
-## 与其他记忆插件对比
-
-| 插件 | 存储后端 | 自动捕获 | 自动召回 | 依赖大小 |
-|------|----------|----------|----------|----------|
-| memory-core | Markdown 文件 | ❌ | ❌ | ~100 KB |
-| memory-lancedb | LanceDB | ✅ | ✅ | ~50 MB |
-| openclaw-mem0 | Mem0 云服务 | ✅ | ✅ | ~310 MB |
-| **openclaw-modelstudio-memory** | ModelStudio云服务 | ✅ | ✅ | **~500 KB** |
-
 ## 注意事项
 
 1. **API 限流**：
