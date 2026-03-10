@@ -14,13 +14,16 @@
 ## 安装
 
 ### 方式 A：从本地安装（开发推荐）
+```bash
+git clone git@github.com:taoquanyus/openclaw-modelstudio-memory.git
+```
 
 ```bash
 # 链接模式（代码修改后重启 Gateway 即生效）
-openclaw plugins install -l /Users/quanyu/.openclaw/workspace/develop_artifacts/openclaw-modelstudio-memory
+openclaw plugins install -l ./openclaw-modelstudio-memory
 
 # 或复制模式
-openclaw plugins install /Users/quanyu/.openclaw/workspace/develop_artifacts/openclaw-modelstudio-memory
+openclaw plugins install ./openclaw-modelstudio-memory
 ```
 
 ### 方式 B：从 npm 安装（发布后）
