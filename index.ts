@@ -294,14 +294,14 @@ function extractTextContent(content: any): string {
  */
 function formatMemoriesContext(memories: MemoryNode[]): string {
   const lines = memories.map((m) => `- ${m.content}`);
-  return `<memories>\n找到以下相关记忆:\n${lines.join("\n")}\n</memories>`;
+  return `<relevant-memories>\n找到以下相关记忆:\n${lines.join("\n")}\n</relevant-memories>`;
 }
 
 /**
  * 清理消息中的注入上下文
  */
 function stripInjectedContext(text: string): string {
-  return text.replace(/<memories>[\s\S]*?<\/memories>\s*/g, "").trim();
+  return text.replace(/<relevant-memories>[\s\S]*?<\/relevant-memories>\s*/g, "").trim();
 }
 
 // ============================================================================
@@ -323,12 +323,6 @@ const modelstudioMemoryPlugin = {
       cfg.userId,
       api.logger
     );
-
-    // 召回缓存
-    const recallCache = new Map<
-      string,
-      { memories: MemoryNode[]; timestamp: number }
-    >();
 
     api.logger.info(
       `modelstudio-memory: 已注册 (user: ${cfg.userId}, autoCapture: ${cfg.autoCapture}, autoRecall: ${cfg.autoRecall})`
@@ -627,23 +621,6 @@ const modelstudioMemoryPlugin = {
           return;
         }
 
-        // 检查缓存
-        const cacheKey = event.prompt.slice(0, 100);
-        if (cfg.recallCacheTtlMs > 0) {
-          const cached = recallCache.get(cacheKey);
-          if (cached && Date.now() - cached.timestamp < cfg.recallCacheTtlMs) {
-            if (cached.memories.length > 0) {
-              api.logger.info(
-                `modelstudio-memory: 从缓存召回 ${cached.memories.length} 条记忆`
-              );
-              return {
-                prependContext: formatMemoriesContext(cached.memories),
-              };
-            }
-            return;
-          }
-        }
-
         // 构造消息格式
         const messages = [{ role: "user" as const, content: event.prompt }];
 
@@ -654,14 +631,6 @@ const modelstudioMemoryPlugin = {
             cfg.minScore
           );
           const memories = result.memory_nodes || [];
-
-          // 缓存结果
-          if (cfg.recallCacheTtlMs > 0) {
-            recallCache.set(cacheKey, {
-              memories,
-              timestamp: Date.now(),
-            });
-          }
 
           // 注入上下文
           if (memories.length > 0) {

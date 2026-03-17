@@ -44,7 +44,7 @@ openclaw modelstudio-memory stats
 
 ## 配置
 
-在 `~/.openclaw/config.json` 中添加配置：
+在 `~/.openclaw/openclaw.json` 中添加配置：
 
 ```json5
 {
